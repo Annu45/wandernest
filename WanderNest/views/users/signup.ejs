@@ -1,0 +1,36 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div style="width:52px;height:52px;background:linear-gradient(135deg,#7C3AED,#F59E0B);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem;">
+        <i class="fa-solid fa-compass-drafting" style="color:white;font-size:1.5rem;"></i>
+      </div>
+      <div class="brand-name">WanderNest</div>
+    </div>
+    <h2 class="auth-title">Join WanderNest 🌍</h2>
+    <p class="auth-subtitle">Create an account to list your place or book stays</p>
+
+    <form action="/signup" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input name="username" id="username" type="text" class="form-control" placeholder="Choose a username" required>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" id="email" type="email" class="form-control" placeholder="your@email.com" required>
+      </div>
+      <div class="mb-4">
+        <label class="form-label">Password</label>
+        <input name="password" id="password" type="password" class="form-control" placeholder="Create a strong password" required>
+      </div>
+      <button class="btn btn-auth">Create Account</button>
+    </form>
+
+    <div class="auth-divider">— or —</div>
+    <p style="text-align:center;font-size:0.9rem;color:#6B7280;">
+      Already have an account? <a href="/login" class="auth-link">Log in</a>
+    </p>
+  </div>
+</div>

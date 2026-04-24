@@ -1,0 +1,12 @@
+<% if (Success && Success.length) { %>
+  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+    <i class="fa-solid fa-circle-check me-2"></i><%= Success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+<% } %>
+<% if (error && error.length) { %>
+  <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+    <i class="fa-solid fa-circle-exclamation me-2"></i><%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+<% } %>

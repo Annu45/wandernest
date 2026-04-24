@@ -1,0 +1,64 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row my-4">
+  <div class="col-lg-8 offset-lg-2">
+    <div class="form-section">
+      <div class="listing-hero-tag mb-0"><i class="fa-solid fa-pen"></i>Edit Listing</div>
+      <h3 class="mt-2">Update Your Listing</h3>
+      <p style="color:#6B7280;margin-bottom:1.8rem;">Keep your listing fresh and accurate</p>
+
+      <form method="POST" action="/listings/<%= listing._id %>?_method=PUT"
+            novalidate class="needs-validation" enctype="multipart/form-data">
+
+        <div class="mb-3">
+          <label class="form-label">📝 Title</label>
+          <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required>
+          <div class="valid-feedback">Looks great!</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">📖 Description</label>
+          <textarea name="listing[description]" class="form-control" rows="4" required><%= listing.description %></textarea>
+          <div class="invalid-feedback">Please add a description.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Current Image</label>
+          <div style="border-radius:12px;overflow:hidden;max-width:300px;">
+            <img src="<%= originalImageUrl %>" style="width:100%;object-fit:cover;border-radius:12px;" alt="Current image">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">🖼️ Replace Image</label>
+          <input name="listing[image]" type="file" class="form-control" accept="image/*">
+          <div style="font-size:0.8rem;color:#9CA3AF;margin-top:4px;">Leave blank to keep current image.</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label class="form-label">💰 Price per Night (₹)</label>
+            <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required>
+            <div class="invalid-feedback">Enter a valid price.</div>
+          </div>
+          <div class="col-md-7 mb-3">
+            <label class="form-label">🌏 Country</label>
+            <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">📍 Location / City</label>
+          <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required>
+        </div>
+
+        <div class="d-flex gap-3">
+          <button class="btn btn-primary-wn">
+            <i class="fa-solid fa-floppy-disk me-2"></i>Save Changes
+          </button>
+          <a href="/listings/<%= listing._id %>" class="btn btn-outline-wn">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

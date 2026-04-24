@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row my-4">
+  <div class="col-lg-8 offset-lg-2">
+    <div class="form-section">
+      <div class="listing-hero-tag mb-0"><i class="fa-solid fa-plus"></i>Create Listing</div>
+      <h3 class="mt-2">List Your Place on WanderNest</h3>
+      <p style="color:#6B7280;margin-bottom:1.8rem;">Share your space with travelers from around the world</p>
+
+      <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+
+        <div class="mb-3">
+          <label class="form-label">📝 Title</label>
+          <input name="listing[title]" placeholder="e.g. Cozy beachfront villa with ocean views" type="text" class="form-control" required>
+          <div class="valid-feedback">Looks great!</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">📖 Description</label>
+          <textarea name="listing[description]" placeholder="Describe what makes your place special…" class="form-control" rows="4" required></textarea>
+          <div class="invalid-feedback">Please add a description.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">🖼️ Upload Image</label>
+          <input name="listing[image]" type="file" class="form-control" accept="image/*">
+          <div style="font-size:0.8rem;color:#9CA3AF;margin-top:4px;">JPG, PNG or JPEG. Max 5MB.</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label class="form-label">💰 Price per Night (₹)</label>
+            <input name="listing[price]" placeholder="e.g. 3500" type="number" class="form-control" required min="0">
+            <div class="invalid-feedback">Enter a valid price.</div>
+          </div>
+          <div class="col-md-7 mb-3">
+            <label class="form-label">🌏 Country</label>
+            <input name="listing[country]" placeholder="e.g. India" type="text" class="form-control" required>
+            <div class="invalid-feedback">Country is required.</div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">📍 Location / City</label>
+          <input name="listing[location]" placeholder="e.g. Goa, India" type="text" class="form-control" required>
+          <div class="invalid-feedback">Location is required.</div>
+        </div>
+
+        <div class="d-flex gap-3">
+          <button class="btn btn-primary-wn">
+            <i class="fa-solid fa-house-chimney me-2"></i>Publish Listing
+          </button>
+          <a href="/listings" class="btn btn-outline-wn">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

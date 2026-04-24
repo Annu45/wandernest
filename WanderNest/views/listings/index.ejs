@@ -1,0 +1,135 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="container position-relative" style="z-index:1;">
+    <h1 class="hero-title">Find Your Perfect<br>Place to Stay 🌍</h1>
+    <p class="hero-subtitle">Discover unique homes, villas & experiences around the world</p>
+    <div class="hero-search-bar">
+      <i class="fa-solid fa-magnifying-glass" style="color:#7C3AED;"></i>
+      <input class="hero-search-input" type="text" placeholder="Where do you want to go?" id="heroSearch">
+      <button class="hero-search-btn" onclick="filterListings()">Search</button>
+    </div>
+  </div>
+</div>
+
+<!-- Category Filter Strip -->
+<div class="category-strip">
+  <div class="container d-flex gap-1" style="overflow-x:auto;scrollbar-width:none;">
+    <button class="category-btn active" onclick="filterCategory(this,'all')">
+      <i class="fa-solid fa-globe"></i>All
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'beach')">
+      <i class="fa-solid fa-umbrella-beach"></i>Beach
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'mountain')">
+      <i class="fa-solid fa-mountain"></i>Mountains
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'city')">
+      <i class="fa-solid fa-city"></i>Cities
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'countryside')">
+      <i class="fa-solid fa-tractor"></i>Countryside
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'island')">
+      <i class="fa-solid fa-water"></i>Islands
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'luxury')">
+      <i class="fa-solid fa-star"></i>Luxury
+    </button>
+    <button class="category-btn" onclick="filterCategory(this,'cabin')">
+      <i class="fa-solid fa-house-chimney"></i>Cabins
+    </button>
+  </div>
+</div>
+
+<!-- Main Listings -->
+<div class="listings-grid">
+  <div class="d-flex justify-content-between align-items-end mb-1">
+    <div>
+      <h2 class="section-title">Explore Listings</h2>
+      <p class="section-subtitle"><span id="listingCount"><%= listings.length %></span> amazing places waiting for you</p>
+    </div>
+    <a href="/listings/new" class="btn btn-primary-wn mb-3">
+      <i class="fa-solid fa-plus me-2"></i>Add Listing
+    </a>
+  </div>
+
+  <% if (listings.length === 0) { %>
+    <div class="empty-state">
+      <i class="fa-solid fa-house-chimney-crack"></i>
+      <h4>No listings yet</h4>
+      <p>Be the first to add a listing!</p>
+      <a href="/listings/new" class="btn btn-primary-wn">Add Listing</a>
+    </div>
+  <% } else { %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4" id="listingsGrid">
+    <% for(let listing of listings) { %>
+    <div class="col listing-item">
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card listing-card h-100">
+          <div class="img-wrapper">
+            <img 
+              class="card-img-top" 
+              src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600' %>"
+              alt="<%= listing.title %>"
+              loading="lazy"
+            >
+            <span class="card-badge">
+              <i class="fa-solid fa-location-dot me-1"></i><%= listing.country %>
+            </span>
+            <button class="wishlist-btn" onclick="event.preventDefault(); toggleWishlist(this)">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="card-location">
+              <i class="fa-solid fa-location-dot"></i>
+              <%= listing.location %>, <%= listing.country %>
+            </div>
+            <div class="card-title-text"><%= listing.title %></div>
+            <div class="d-flex justify-content-between align-items-center mt-1">
+              <div class="card-price">
+                ₹<%= listing.price.toLocaleString("en-IN") %>
+                <span>/ night</span>
+              </div>
+              <div class="card-rating">
+                <i class="fa-solid fa-star star-icon"></i>
+                <span>4.8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+  <% } %>
+</div>
+
+<script>
+function toggleWishlist(btn) {
+  btn.classList.toggle('active');
+  const icon = btn.querySelector('i');
+  icon.classList.toggle('fa-regular');
+  icon.classList.toggle('fa-solid');
+}
+
+function filterListings() {
+  const q = document.getElementById('heroSearch').value.toLowerCase();
+  document.querySelectorAll('.listing-item').forEach(item => {
+    const text = item.innerText.toLowerCase();
+    item.style.display = text.includes(q) ? '' : 'none';
+  });
+}
+
+function filterCategory(btn, cat) {
+  document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // In production this would filter by category tag on listing
+}
+
+document.getElementById('heroSearch').addEventListener('keydown', e => {
+  if(e.key === 'Enter') filterListings();
+});
+</script>

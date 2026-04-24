@@ -1,0 +1,198 @@
+<% layout("/layouts/boilerplate") %>
+<script>
+  const listing = <%- JSON.stringify(listing) %>;
+</script>
+<div class="row mt-4 mb-5">
+  <!-- Left: Main content -->
+  <div class="col-lg-7">
+    <!-- Back button -->
+    <a href="/listings" class="btn btn-outline-wn btn-sm mb-3">
+      <i class="fa-solid fa-arrow-left me-2"></i>Back to Listings
+    </a>
+
+    <!-- Hero Image -->
+    <div class="show-hero mb-3">
+      <img src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900' %>" alt="<%= listing.title %>">
+      <div style="position:absolute;bottom:16px;left:16px;">
+        <span class="show-badge"><i class="fa-solid fa-location-dot me-1"></i><%= listing.country %></span>
+      </div>
+    </div>
+
+    <!-- Title & meta -->
+    <div class="listing-hero-tag"><i class="fa-solid fa-house-chimney"></i>Entire place</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:0.5rem;"><%= listing.title %></h1>
+    <div class="show-meta">
+      <div class="card-rating" style="font-size:0.95rem;">
+        <i class="fa-solid fa-star star-icon"></i> 4.87 &nbsp;·&nbsp; <span style="color:#6B7280;">128 reviews</span>
+      </div>
+      <div style="color:#6B7280;font-size:0.9rem;">
+        <i class="fa-solid fa-location-dot me-1"></i><%= listing.location %>, <%= listing.country %>
+      </div>
+    </div>
+
+    <hr style="border-color:#E4E2FF;">
+
+    <!-- Host card -->
+    <div class="host-card">
+      <div class="host-avatar"><%= listing.owner ? listing.owner.username.charAt(0).toUpperCase() : '?' %></div>
+      <div>
+       <div style="font-weight:700;">Hosted by <span style="color:#7C3AED;"><%= listing.owner ? listing.owner.username : 'WanderNest Host' %></span></div>
+       <div style="font-size:0.82rem;color:#6B7280;">Joined WanderNest · Superhost</div>
+     </div>
+    </div>
+
+    <!-- Description -->
+    <div class="show-section-title"><i class="fa-solid fa-align-left" style="color:#7C3AED;"></i>About this place</div>
+    <p style="color:#374151;line-height:1.7;"><%= listing.description %></p>
+
+    <!-- Amenities (decorative) -->
+    <hr style="border-color:#E4E2FF;">
+    <div class="show-section-title"><i class="fa-solid fa-list-check" style="color:#7C3AED;"></i>What this place offers</div>
+    <div class="row g-2 mb-3">
+      <% const amenities = [
+        {icon:'fa-wifi',label:'High-speed WiFi'},
+        {icon:'fa-car',label:'Free Parking'},
+        {icon:'fa-kitchen-set',label:'Full Kitchen'},
+        {icon:'fa-wind',label:'Air Conditioning'},
+        {icon:'fa-tv',label:'Smart TV'},
+        {icon:'fa-mug-hot',label:'Coffee & Tea'},
+      ]; %>
+      <% for(let a of amenities) { %>
+      <div class="col-6">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#F8F7FF;border-radius:10px;">
+          <i class="fa-solid <%= a.icon %>" style="color:#7C3AED;width:20px;"></i>
+          <span style="font-size:0.88rem;font-weight:500;"><%= a.label %></span>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <hr style="border-color:#E4E2FF;">
+
+    <!-- Map -->
+    <div class="show-section-title"><i class="fa-solid fa-map-pin" style="color:#7C3AED;"></i>Where you'll be</div>
+    <div id="map" class="mb-4"></div>
+
+    <hr style="border-color:#E4E2FF;">
+
+    <!-- Reviews -->
+    <div class="show-section-title"><i class="fa-solid fa-comments" style="color:#7C3AED;"></i>Guest Reviews
+      <span style="font-size:0.82rem;color:#6B7280;font-weight:400;margin-left:4px;">(<%= listing.reviews.length %>)</span>
+    </div>
+
+    <% if(listing.reviews.length > 0) { %>
+      <% for(let review of listing.reviews) { %>
+        <div class="review-card">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="reviewer-avatar"><%= review.author.username.charAt(0).toUpperCase() %></div>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;">@<%= review.author.username %></div>
+              <p class="starability-result mb-0" data-rating="<%= review.rating %>"></p>
+            </div>
+            <% if(currUser && listing.owner && currUser._id.toString() === listing.owner._id.toString()) { %>
+              <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="ms-auto">
+                <button class="btn btn-sm" style="background:none;border:1px solid #EF4444;color:#EF4444;border-radius:8px;padding:3px 10px;font-size:0.78rem;" title="Delete review">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </form>
+            <% } %>
+          </div>
+          <p style="margin:0;font-size:0.9rem;color:#374151;line-height:1.6;"><%= review.comment %></p>
+        </div>
+      <% } %>
+    <% } else { %>
+      <p style="color:#9CA3AF;font-size:0.9rem;">No reviews yet. Be the first to review!</p>
+    <% } %>
+
+    <!-- Leave a review -->
+    <% if(currUser) { %>
+      <div style="background:#F8F7FF;border-radius:16px;padding:1.5rem;margin-top:1.5rem;border:1px solid #EDE9FE;">
+        <div class="show-section-title mb-3"><i class="fa-solid fa-pen" style="color:#7C3AED;"></i>Leave a Review</div>
+        <form action="/listings/<%= listing._id %>/reviews" method="POST"> novalidate class="needs-validation">
+          <div class="mb-3">
+            <label class="form-label">Your Rating</label>
+            <fieldset class="starability-slot">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating."/>
+              <input type="radio" id="first-rate1" name="review[rating]" value="1"/>
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2"/>
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3"/>
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4"/>
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5"/>
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Your Comment</label>
+            <textarea name="review[comment]" rows="4" class="form-control" placeholder="Share your experience…" required></textarea>
+            <div class="invalid-feedback">Please add a comment.</div>
+          </div>
+          <button class="btn btn-primary-wn">Submit Review</button>
+        </form>
+      </div>
+    <% } else { %>
+      <div style="background:#F8F7FF;border-radius:12px;padding:1rem 1.5rem;text-align:center;border:1px dashed #C4B5FD;margin-top:1rem;">
+        <i class="fa-solid fa-lock me-2" style="color:#7C3AED;"></i>
+        <a href="/login" style="color:#7C3AED;font-weight:600;">Log in</a> to leave a review
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Right: Booking card -->
+  <div class="col-lg-4 offset-lg-1 mt-4 mt-lg-0">
+    <div style="position:sticky;top:90px;">
+      <!-- Price card -->
+      <div style="background:white;border-radius:20px;padding:1.8rem;box-shadow:0 8px 30px rgba(124,58,237,0.12);border:1px solid #EDE9FE;margin-bottom:1.2rem;">
+        <div class="price-tag">₹<%= listing.price.toLocaleString("en-IN") %> <span>/ night</span></div>
+        <div class="card-rating my-2"><i class="fa-solid fa-star star-icon"></i> 4.87 · 128 reviews</div>
+        <hr style="border-color:#EDE9FE;">
+        <!-- Fake booking form for UI -->
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label class="form-label">Check-in</label>
+            <input type="date" class="form-control form-control-sm">
+          </div>
+          <div class="col-6">
+            <label class="form-label">Check-out</label>
+            <input type="date" class="form-control form-control-sm">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Guests</label>
+            <select class="form-control form-control-sm">
+              <option>1 guest</option>
+              <option>2 guests</option>
+              <option>3 guests</option>
+              <option>4+ guests</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary-wn w-100" style="font-size:1rem;padding:0.8rem;">
+          Reserve Now
+        </button>
+        <p style="text-align:center;font-size:0.78rem;color:#9CA3AF;margin-top:0.8rem;">You won't be charged yet</p>
+      </div>
+
+      <!-- Owner actions -->
+      <% if(currUser && currUser._id.toString() === listing.owner._id.toString()) { %>
+      <div style="background:white;border-radius:16px;padding:1.2rem;border:1px solid #EDE9FE;">
+        <div style="font-size:0.82rem;color:#9CA3AF;margin-bottom:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Your Listing</div>
+        <div class="d-grid gap-2">
+          <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-wn">
+            <i class="fa-solid fa-pen me-2"></i>Edit Listing
+          </a>
+          <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+            <button class="btn btn-danger-wn w-100">
+              <i class="fa-solid fa-trash me-2"></i>Delete Listing
+            </button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<script src="/js/map.js"></script>

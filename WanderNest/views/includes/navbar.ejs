@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="/listings">
+      <div class="brand-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+      WanderNest
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMain">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings"><i class="fa-solid fa-compass me-1"></i>Explore</a>
+        </li>
+      </ul>
+
+      <!-- Search -->
+      <form class="d-flex align-items-center me-3" role="search" action="/listings" method="GET">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input class="search-input" type="search" name="q" placeholder="Search destinations…">
+        </div>
+      </form>
+
+      <!-- Right actions -->
+      <ul class="navbar-nav gap-2 align-items-center">
+        <% if(!currUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/new"><i class="fa-solid fa-plus me-1"></i>List a place</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-nav-outline" href="/signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-nav-primary" href="/login">Log In</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/new"><i class="fa-solid fa-plus me-1"></i>List a place</a>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link fw-semibold text-muted" style="font-size:0.9rem;">
+              <i class="fa-regular fa-circle-user me-1"></i><%= currUser.username %>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-nav-outline" href="/logout">Log Out</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
