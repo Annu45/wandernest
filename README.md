@@ -1,102 +1,141 @@
-# WanderNest 🌍
+WanderNest 🌍
 
-A full-stack Airbnb-inspired vacation rental platform where users can discover, list, and review unique stays around the world.
+A full-stack vacation rental platform where users can discover, list, and review unique stays around the world. WanderNest provides a seamless booking-style experience with secure authentication, image uploads, location-based listings, and user reviews.
 
-![WanderNest Preview](./public/images/preview.png)
+✨ Features
 
-## ✨ Features
+* 🔐 Session-based authentication using Passport.js and passport-local
+* 🏠 Full CRUD functionality for property listings
+* 🖼️ Image uploads and storage using Cloudinary and Multer
+* 🗺️ Automatic geocoding with OpenStreetMap Nominatim
+* ⭐ Review and rating system for listings
+* 🔒 Authorization to ensure only listing owners can edit or delete their listings
+* 💾 Persistent session management using MongoDB Atlas and connect-mongo
+* 📱 Fully responsive user interface built with Bootstrap and custom CSS
+* ⚡ Flash messages for user feedback and notifications
+* ✅ Server-side validation using Joi
 
-- 🔐 User authentication (Sign Up / Log In / Log Out) with Passport.js
-- 🏠 Full CRUD for listings — create, view, edit, delete
-- 🖼️ Image uploads via Cloudinary + Multer
-- 🗺️ Automatic geocoding with OpenStreetMap Nominatim
-- ⭐ Reviews with star ratings per listing
-- 🔒 Authorization — only listing owners can edit/delete
-- 💾 Sessions stored in MongoDB Atlas via connect-mongo
-- 📱 Fully responsive UI with Bootstrap + custom CSS
+⸻
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Backend | Node.js, Express.js |
-| Database | MongoDB Atlas, Mongoose |
-| Auth | Passport.js, passport-local |
-| Storage | Cloudinary, Multer |
-| Templating | EJS, ejs-mate |
-| Validation | Joi |
-| Styling | Bootstrap 5, Custom CSS |
+Layer	Technology
+Backend	Node.js, Express.js
+Database	MongoDB Atlas, Mongoose
+Authentication	Passport.js, passport-local, passport-local-mongoose
+Session Management	express-session, connect-mongo
+Image Storage	Cloudinary, Multer
+Templating	EJS, ejs-mate
+Validation	Joi
+Styling	Bootstrap 5, Custom CSS
+Utilities	Method-Override, Connect-Flash
 
-## 🚀 Getting Started
+⸻
 
-### Prerequisites
-- Node.js v18+
-- MongoDB Atlas account
-- Cloudinary account
+🚀 Getting Started
 
-### Installation
+Prerequisites
 
-```bash
-git clone https://github.com/YOUR_USERNAME/WanderNest.git
-cd WanderNest
+Before running the project, make sure you have:
+
+* Node.js (v18 or higher)
+* MongoDB Atlas account
+* Cloudinary account
+* Git installed
+
+⸻
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/Annu45/wandernest.git
+cd wandernest/WanderNest
+
+Install dependencies:
+
 npm install
-```
 
-### Environment Variables
+⸻
 
-Create a `.env` file in the root directory:
+Environment Variables
 
-```env
+Create a .env file in the root directory and add the following variables:
+
 ATLASDB_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/WanderNest
 CLOUD_NAME=your_cloudinary_cloud_name
 CLOUD_API_KEY=your_cloudinary_api_key
 CLOUD_API_SECRET=your_cloudinary_api_secret
 SECRET=your_session_secret_key
 PORT=8080
-```
 
-### Seed the Database
+⸻
 
-```bash
+Seed the Database
+
+Populate the database with sample listings:
+
 node init/index.js
-```
 
-### Run the App
+⸻
 
-```bash
+Run the Application
+
+Start the server:
+
 node app.js
-```
 
-Visit `http://localhost:8080`
+Or, if using nodemon:
 
-## 📁 Project Structure
+npm run dev
 
-```
+The application will be available at:
+
+http://localhost:8080
+
+⸻
+
+📁 Project Structure
+
 WanderNest/
-├── controllers/       # Route logic
-├── models/            # Mongoose schemas
-├── routes/            # Express routers
-├── views/             # EJS templates
+├── controllers/          # Route controller logic
+├── models/               # Mongoose schemas
+├── routes/               # Express routers
+├── views/
 │   ├── listings/
 │   ├── users/
 │   ├── includes/
-│   └── Layouts/
-├── public/            # Static assets (CSS, JS)
-├── init/              # Database seed script
-├── utils/             # Error handling helpers
-├── cloudConfig.js     # Cloudinary setup
-├── middleware.js      # Auth & validation middleware
-├── schema.js          # Joi validation schemas
-└── app.js             # Entry point
-```
+│   └── layouts/
+├── public/
+│   ├── css/
+│   └── js/
+├── init/                 # Database seed scripts
+├── utils/                # Utility functions & error handlers
+├── cloudConfig.js        # Cloudinary configuration
+├── middleware.js         # Authentication & validation middleware
+├── schema.js             # Joi validation schemas
+├── app.js                # Application entry point
+├── package.json
+└── README.md
 
-## 🔒 Security
+⸻
 
-- Passwords hashed via passport-local-mongoose
-- Sessions encrypted with a secret key
-- `.env` excluded from version control via `.gitignore`
-- Input validated server-side with Joi
+🔒 Security
 
-## 📄 License
+* Passwords securely hashed using passport-local-mongoose
+* Session data stored in MongoDB Atlas
+* Sensitive credentials stored in .env
+* .env excluded from version control using .gitignore
+* Server-side validation using Joi
+* Protected routes and ownership-based authorization
 
-MIT © 2025 WanderNest Private Limited
+⸻
+
+👩‍💻 Author
+
+Annu Mathur
+
+GitHub: https://github.com/Annu45
+LinkedIn: https://www.linkedin.com/in/annumathur003/
+
+⸻
