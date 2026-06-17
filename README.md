@@ -1,559 +1,349 @@
 # 🏡 WanderNest - Modern Travel Accommodation Platform
 
-A full-featured MERN vacation rental platform where users can discover, list, and review unique stays worldwide. Built with Node.js, Express, MongoDB, and interactive mapping.
+A full-stack vacation rental platform where users can discover, list, and review unique stays worldwide. Built with **Node.js, Express.js, MongoDB, EJS, Bootstrap, Cloudinary, and Leaflet.js**.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-ISC-green)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-ISC-green)
+![Node.js](https://img.shields.io/badge/Node.js-Express-success)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)
 
-## ✨ Key Features
+---
 
-### 🔍 Advanced Search & Filtering
-- **Real-time Search**: Filter listings by title, location, or keywords
-- **Category Filters**: Browse by Beach, Mountains, Cities, Luxury, Cabins, etc.
-- **Smooth Animations**: Beautiful fade-in effects when results update
-- **Instant Results**: See matching listings immediately as you type
+## 🌟 Overview
 
-### 🗺️ Interactive Maps (FREE - No Mapbox required!)
-- **Leaflet.js Maps**: Uses free OpenStreetMap tiles (no API key needed!)
-- **Location Pins**: Shows exact listing location with custom red markers
-- **Responsive Design**: Maps automatically adjust to screen size
-- **Popup Information**: Click markers to see listing details
-- **Professional Styling**: Beautiful map integration with rounded corners and shadows
+WanderNest is a modern accommodation marketplace inspired by platforms like Airbnb. Users can browse listings, create their own stays, upload images, leave reviews, and explore locations through interactive maps.
 
-### 🔐 Secure Authentication
-- **Passport.js Integration**: Industry-standard authentication
-- **Password Hashing**: Secure password storage
-- **Session Persistence**: MongoDB session store
-- **Protected Routes**: Only authenticated users can create/edit listings
+---
 
-### 🏠 Full CRUD for Listings
-- **Create**: Add new listings with images and details
-- **Read**: Browse all listings with details and reviews
-- **Update**: Edit your own listings
-- **Delete**: Remove listings you own
+## ✨ Features
 
-### 🖼️ Professional Image Management
-- **Cloudinary Integration**: Automatic image optimization
-- **Multer Upload**: Secure file handling
-- **Image Transformation**: Responsive image sizing
-- **Multiple Formats**: Support for various image types
+### 🔍 Smart Search & Filtering
 
-### ⭐ Review & Rating System
-- **Star Ratings**: 1-5 star system with visual display
-- **User Comments**: Detailed review text
-- **Author Attribution**: Reviews show reviewer information
-- **Owner Controls**: Only listing owners can delete reviews
-- **Review Count**: Display total reviews per listing
+- Real-time listing search
+- Search by title, location, and keywords
+- Category-based filtering
+- Instant UI updates
+- Responsive search experience
 
-### 💾 Data Persistence
-- **MongoDB Atlas**: Cloud database hosting
-- **Session Storage**: Persistent user sessions
-- **Automatic Backups**: MongoDB Atlas backup features
-- **Real-time Sync**: Immediate data updates
+### 🗺️ Interactive Maps
+
+- Leaflet.js integration
+- OpenStreetMap tiles
+- Listing location markers
+- Responsive map interface
+- Interactive popups with listing information
+
+### 🔐 Authentication & Authorization
+
+- Passport.js authentication
+- Session-based login system
+- Protected routes
+- Ownership verification
+- Persistent user sessions
+
+### 🏠 Listing Management
+
+- Create listings
+- View listings
+- Edit listings
+- Delete listings
+- Image upload support
+
+### 🖼️ Image Uploads
+
+- Cloudinary integration
+- Multer file handling
+- Optimized image delivery
+- Multiple image format support
+
+### ⭐ Reviews & Ratings
+
+- 1–5 star rating system
+- User reviews
+- Review ownership validation
+- Dynamic review display
+
+### 💾 Database
+
+- MongoDB Atlas
+- Mongoose ODM
+- Persistent storage
+- Relationship management
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|--------|------------|
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB Atlas, Mongoose |
-| **Authentication** | Passport.js, passport-local |
-| **Session Management** | express-session, connect-mongo |
-| **Image Storage** | Cloudinary, Multer |
-| **Maps** | Leaflet.js (FREE - no API key!) |
-| **Templating** | EJS, ejs-mate |
-| **Frontend** | Bootstrap 5, Custom CSS, Font Awesome |
-| **Validation** | Joi, Server-side validation |
-| **Utilities** | Method-Override, Connect-Flash, dotenv |
+| Category | Technologies |
+|-----------|-------------|
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas, Mongoose |
+| Authentication | Passport.js, Passport Local |
+| Session Store | Express Session, Connect Mongo |
+| Image Storage | Cloudinary, Multer |
+| Maps | Leaflet.js, OpenStreetMap |
+| Frontend | EJS, Bootstrap 5, Font Awesome |
+| Validation | Joi |
+| Utilities | dotenv, connect-flash, method-override |
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- **Node.js** v14+ ([Download](https://nodejs.org/))
-- **MongoDB Atlas** account (free tier available) ([Create](https://www.mongodb.com/cloud/atlas))
-- **Cloudinary** account (optional, for image uploads) ([Free account](https://cloudinary.com/))
-- **Git** installed
+- Node.js (v14+)
+- MongoDB Atlas Account
+- Cloudinary Account
+- Git
 
-### Step 1: Clone Repository
+---
+
+### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Annu45/wandernest.git
 cd WanderNest
 ```
 
-### Step 2: Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Step 3: Setup Environment Variables
+### 3. Create Environment Variables
 
-Create `.env` file (copy from `.env.example`):
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your credentials:
+Create a `.env` file:
 
 ```env
-# MongoDB Atlas Connection
-ATLASDB_URL=mongodb+srv://username:password@cluster.mongodb.net/wandernest
+ATLASDB_URL=your_mongodb_connection_string
 
-# Session Secret (use any random string)
-SECRET=your_secret_key_here_change_this
+SECRET=your_session_secret
 
-# Mapbox Token (OPTIONAL - only needed for geocoding new listings)
-MAP_TOKEN=pk_your_mapbox_token_here
+MAP_TOKEN=your_mapbox_token
 
-# Cloudinary Credentials (for image uploads)
 CLOUD_NAME=your_cloud_name
-CLOUD_API_KEY=your_api_key
-CLOUD_API_SECRET=your_api_secret
+CLOUD_API_KEY=your_cloud_api_key
+CLOUD_API_SECRET=your_cloud_api_secret
 
-# Environment
 NODE_ENV=development
 ```
 
-### Step 4: Initialize Database with Sample Data
+### 4. Seed Database
 
 ```bash
 node init/index.js
 ```
 
-This creates:
-- ✅ Seed admin user (username: `seed-admin`, password: `admin1234`)
-- ✅ 9 sample listings with real coordinates
-- ✅ Database schema and indexes
+This loads sample listings and demo data.
 
-### Step 5: Start the Server
+### 5. Start Server
 
 ```bash
 node app.js
 ```
 
-The app will run at: **http://localhost:3000**
+Open:
 
-### Step 6: Test the Application
+```text
+http://localhost:8080
+```
 
-1. **Homepage** (http://localhost:3000/)
-   - View all 9 sample listings
-   - Try the search bar
-   - Click category filters
+---
 
-2. **Login**
-   - Use credentials: `seed-admin` / `admin1234`
-   - Test creating a new listing
+## 📸 Screenshots
 
-3. **Browse Listings**
-   - Click any listing to see details
-   - View the interactive Leaflet map
-   - Read reviews
+### Home Page
 
-4. **Leave a Review**
-   - Login first
-   - Click a listing
-   - Scroll to "Leave a Review"
-   - Add rating and comment
+Add screenshot here:
+
+```md
+<img width="1470" height="884" alt="image" src="https://github.com/user-attachments/assets/61e65802-ef73-485c-b850-96ce08bc4ebd" />
+
+```
+
+### Listing Details
+
+```md
+<img width="1470" height="887" alt="image" src="https://github.com/user-attachments/assets/c4b1c2c2-5d19-4ed7-9385-1a175fefc20f" />
+
+```
+
+### Interactive Map
+
+```md
+<img width="1470" height="885" alt="image" src="https://github.com/user-attachments/assets/a99196a5-e442-4fea-bdf5-dd459dab4cc0" />
+
+```
 
 ---
 
 ## 📂 Project Structure
 
-```
-WanderNest/
-├── controllers/
-│   ├── listing.js      # Create, Read, Update, Delete listings
-│   ├── reviews.js      # Manage reviews and ratings
-│   └── users.js        # User authentication logic
-├── models/
-│   ├── listing.js      # Listing data schema
-│   ├── review.js       # Review data schema
-│   └── user.js         # User authentication schema
-├── routes/
-│   ├── listing.js      # GET/POST/PUT/DELETE listing routes
-│   ├── review.js       # Review routes
-│   └── user.js         # Auth routes (login/signup)
-├── views/
-│   ├── listings/
-│   │   ├── index.ejs   # All listings (with search/filter)
-│   │   ├── show.ejs    # Single listing detail + map
-│   │   ├── new.ejs     # Create listing form
-│   │   └── edit.ejs    # Edit listing form
-│   ├── users/
-│   │   ├── login.ejs   # Login page
-│   │   └── signup.ejs  # Signup page
-│   ├── Layouts/
-│   │   └── boilerplate.ejs   # Main HTML template
-│   ├── includes/
-│   │   ├── navbar.ejs        # Navigation bar
-│   │   ├── footer.ejs        # Footer
-│   │   └── flash.ejs         # Flash messages
-│   └── error.ejs       # Error page
-├── public/
-│   ├── css/
-│   │   ├── style.css        # Main stylesheet (1000+ lines)
-│   │   └── rating.css       # Star rating component
-│   └── js/
-│       ├── map.js           # Leaflet map initialization
-│       ├── script.js        # Search, filter, wishlist functions
-│       └── script.js        # Utility functions
-├── utils/
-│   ├── ExpressError.js      # Custom error class
-│   └── wrapAsync.js         # Async error wrapper middleware
-├── init/
-│   ├── index.js             # Database initialization script
-│   └── data.js              # 9 sample listings with coordinates
-├── app.js                   # Main Express application
-├── cloudConfig.js           # Cloudinary configuration
-├── middleware.js            # Custom middleware
-├── schema.js                # Joi validation schemas
-├── package.json             # Dependencies and scripts
-├── .env.example             # Environment variables template
-└── README.md                # This file
+```text
+WanderNest
+│
+├── controllers
+│   ├── listing.js
+│   ├── reviews.js
+│   └── users.js
+│
+├── models
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+│
+├── routes
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+│
+├── views
+│   ├── listings
+│   ├── users
+│   ├── includes
+│   └── layouts
+│
+├── public
+│   ├── css
+│   └── js
+│
+├── init
+│   ├── data.js
+│   └── index.js
+│
+├── utils
+│   ├── ExpressError.js
+│   └── wrapAsync.js
+│
+├── cloudConfig.js
+├── middleware.js
+├── schema.js
+├── app.js
+├── package.json
+└── README.md
 ```
 
 ---
 
-## 🎨 Design & Styling
+## 📖 Main Routes
 
-### Color Palette & Typography
+### Public Routes
 
-- **Primary Color**: Purple (#7C3AED)
-- **Secondary Color**: Gold/Amber (#F59E0B)
-- **Accent Colors**: Green (#10B981), Red (#EF4444)
-- **Typography**: 
-  - Headers: Playfair Display (serif, elegant)
-  - Body: Plus Jakarta Sans (modern, clean)
-
-### Features
-
-- **Gradient Effects**: Beautiful purple-to-blue gradients on hero section
-- **Smooth Animations**: Hover effects, smooth transitions, fade-in animations
-- **Responsive Design**: Mobile-first approach, works on all screen sizes
-- **Dark Mode Ready**: CSS variables for easy theme switching
-
----
-
-## 🔧 Configuration & Setup
-
-### MongoDB Atlas Setup
-
-1. Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a free account
-3. Create a cluster
-4. Get your connection string
-5. Add to `.env`:
-```env
-ATLASDB_URL=mongodb+srv://username:password@cluster.mongodb.net/wandernest
+```http
+GET  /
+GET  /listings
+GET  /listings/:id
+GET  /signup
+GET  /login
 ```
 
-### Cloudinary Setup (For Image Uploads)
+### Protected Routes
 
-1. Sign up at [Cloudinary](https://cloudinary.com) (free tier available)
-2. Get your credentials from the dashboard
-3. Add to `.env`:
-```env
-CLOUD_NAME=your_cloud_name
-CLOUD_API_KEY=your_api_key
-CLOUD_API_SECRET=your_api_secret
-```
+```http
+POST   /listings
+GET    /listings/:id/edit
+PUT    /listings/:id
+DELETE /listings/:id
 
-### Mapbox Token (Optional - Only for Geocoding New Listings)
-
-**Note:** Maps still work without this! Leaflet uses free OpenStreetMap tiles.
-
-1. Create account at [Mapbox](https://www.mapbox.com)
-2. Get your public token
-3. Add to `.env`:
-```env
-MAP_TOKEN=pk_your_mapbox_token
+POST   /listings/:id/reviews
+DELETE /listings/:id/reviews/:reviewId
 ```
 
 ---
 
-## 📖 Usage Guide
+## 🔒 Security Features
 
-### For Users
-
-1. **Browse Listings**
-   - Go to homepage
-   - Use search bar to find listings
-   - Click category buttons to filter by type
-   - Click on any listing to see details
-
-2. **View Location**
-   - Click on a listing
-   - Scroll down to "Where you'll be"
-   - Interactive Leaflet map shows exact location
-   - Click marker for listing info
-
-3. **Leave a Review**
-   - Login to your account
-   - Go to any listing
-   - Scroll to "Leave a Review"
-   - Select star rating (1-5)
-   - Write your comment
-   - Submit
-
-4. **Create Your Own Listing**
-   - Login to account
-   - Click "Add Listing" button
-   - Fill in all details
-   - Upload an image
-   - Choose location (will be geocoded)
-   - Submit
-   - Listing appears immediately with map
-
-### For Developers
-
-#### API Routes
-
-**Public Routes:**
-```
-GET  /              → Homepage (redirects to /listings)
-GET  /listings      → View all listings
-GET  /listings/:id  → View listing details with map and reviews
-GET  /signup        → Signup form
-GET  /login         → Login form
-```
-
-**Protected Routes (Require Login):**
-```
-POST   /listings                  → Create new listing
-GET    /listings/:id/edit         → Edit listing form
-PUT    /listings/:id              → Update listing
-DELETE /listings/:id              → Delete listing
-
-POST   /listings/:id/reviews      → Add review
-DELETE /listings/:id/reviews/:rid → Delete review (owner only)
-```
-
-#### Middleware
-
-- `isLoggedIn` - Ensures user is authenticated
-- `isOwner` - Ensures user owns the resource
-- Joi validation schemas in `schema.js`
+- Password hashing through passport-local-mongoose
+- Protected routes
+- Ownership-based authorization
+- Environment variable protection
+- Server-side validation with Joi
+- Session persistence using MongoDB
 
 ---
 
-## 🐛 Troubleshooting
+## 🎨 UI Highlights
 
-### Map Not Showing?
-✅ **Solution**: 
-- Check browser console (F12) for errors
-- Ensure listing has proper coordinates
-- Clear browser cache and refresh
-- Try a sample listing first
-- Leaflet maps should work in any browser
-
-### Search/Filters Not Working?
-✅ **Solution**:
-- Ensure JavaScript is enabled
-- Clear browser cache
-- Check that listings are in database
-- Open browser console to see errors
-- Try the sample listings first
-
-### Images Not Uploading?
-✅ **Solution**:
-- Verify Cloudinary credentials in `.env`
-- Check API key permissions in Cloudinary
-- Ensure `.env` file is in root directory
-- Restart server after changing `.env`
-- Check file size (should be < 10MB)
-
-### Database Connection Error?
-✅ **Solution**:
-- Verify MongoDB connection string
-- Check username/password in connection string
-- Add your IP to MongoDB Atlas whitelist
-- Ensure internet connection is active
-- Try connecting from MongoDB Compass
-
-### Port Already in Use?
-✅ **Solution**:
-```bash
-# Kill process on port 3000 (macOS/Linux)
-lsof -ti:3000 | xargs kill -9
-
-# Windows
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
-```
-
----
-
-## 🚀 Performance Optimization
-
-- **Image Optimization**: Cloudinary handles resizing and compression
-- **Lazy Loading**: Images load as user scrolls
-- **Session Caching**: MongoDB session store caches user sessions
-- **Responsive Images**: Different sizes for different screen sizes
-- **CSS Minification**: Production-ready CSS
-
----
-
-## 🔒 Security Best Practices
-
-✅ **Implemented:**
-- Password hashing with bcrypt (via Passport)
-- CSRF protection via method-override middleware
-- Input validation with Joi schemas
-- Authorization checks for listing/review operations
-- Environment variables for sensitive data
-- SQL injection prevention (MongoDB doesn't use SQL)
-- XSS protection via EJS templating
-
-⚠️ **Recommendations for Production:**
-- Use HTTPS only
-- Enable CORS properly
-- Add rate limiting
-- Use helmet.js for HTTP headers
-- Add request logging
-- Set up error monitoring (Sentry)
-- Use environment-specific configs
-
----
-
-## 📊 Database Schema
-
-### Listing Schema
-```javascript
-{
-  title: String,
-  description: String,
-  price: Number,
-  location: String,
-  country: String,
-  image: { url: String, filename: String },
-  owner: ObjectId (User),
-  reviews: [ObjectId] (Review),
-  geometry: {
-    type: "Point",
-    coordinates: [longitude, latitude]
-  }
-}
-```
-
-### Review Schema
-```javascript
-{
-  comment: String,
-  rating: Number (1-5),
-  author: ObjectId (User),
-  listing: ObjectId (Listing)
-}
-```
-
-### User Schema
-```javascript
-{
-  email: String,
-  username: String,
-  hash: String (password hash),
-  salt: String (password salt)
-}
-```
-
----
-
-## 🎓 Learning Resources
-
-- [Express.js Documentation](https://expressjs.com)
-- [MongoDB Documentation](https://docs.mongodb.com)
-- [Mongoose Documentation](https://mongoosejs.com)
-- [Passport.js Authentication](http://www.passportjs.org)
-- [Leaflet.js Maps](https://leafletjs.com)
-- [Bootstrap 5 Documentation](https://getbootstrap.com)
-
----
-
-## 🌟 Features Showcase
-
-### Search & Filter Demo
-```
-User types "beach" → Instant results show beach properties
-User clicks "Mountains" → Only mountain listings appear
-User searches "New York" → NYC listings filter in real-time
-```
-
-### Map Integration
-```
-User clicks listing → Map loads instantly
-User zooms/pans → Responsive map controls
-User clicks marker → Popup shows listing title & location
-```
-
-### Review System
-```
-User logs in → Sees "Leave a Review" section
-User rates property → Shows star rating
-User adds comment → Comment is saved
-User submits → Review appears immediately
-```
+- Modern purple-themed design
+- Responsive layout
+- Interactive category filters
+- Custom styled cards
+- Smooth animations
+- Interactive maps
+- Mobile-friendly interface
 
 ---
 
 ## 🚧 Future Enhancements
 
-- [ ] Advanced price range filters
-- [ ] Booking calendar system
-- [ ] Payment integration (Stripe)
-- [ ] Email notifications
-- [ ] User profile customization
-- [ ] Admin dashboard
-- [ ] Analytics & insights
-- [ ] Dark mode toggle
-- [ ] Multi-language support
-- [ ] Real-time chat messaging
-- [ ] Wishlist functionality
-- [ ] Advanced search with autocomplete
-
----
-
-## 📄 License
-
-**ISC License** - Feel free to use this project for personal or commercial purposes!
+- Booking system
+- Payment integration (Stripe)
+- Wishlist functionality
+- User profile dashboard
+- Email notifications
+- Dark mode
+- Advanced search filters
+- Admin dashboard
+- Real-time messaging
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! 
+Contributions are welcome.
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push changes
+
+```bash
+git push origin feature/new-feature
+```
+
 5. Open a Pull Request
 
 ---
 
-## 📧 Support & Contact
+## 📄 License
 
-- 📖 Check the README for common issues
-- 🐛 Found a bug? Open an issue on GitHub
-- 💬 Have questions? Open a discussion
-- 📮 Email support available
+ISC License
 
 ---
 
-## 🎉 Acknowledgments
+## 👩‍💻 Author
 
-- Bootstrap team for the amazing CSS framework
-- Leaflet team for free mapping library
-- MongoDB for excellent database
-- Cloudinary for image hosting
-- Passport.js for authentication
+### Annu Mathur
+
+- GitHub: https://github.com/Annu45
+- LinkedIn: https://www.linkedin.com/in/annumathur003/
 
 ---
 
-**Made with ❤️ by the WanderNest Team**
+## 🙏 Acknowledgements
 
-**Happy exploring! 🌍✈️🏖️**
+- Express.js
+- MongoDB Atlas
+- Passport.js
+- Cloudinary
+- Bootstrap
+- Leaflet.js
+- OpenStreetMap
+
+---
+
+Made with ❤️ by **Annu Mathur**
+
+Happy Exploring 🌍✈️
