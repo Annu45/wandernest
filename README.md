@@ -98,12 +98,11 @@ WanderNest is a modern accommodation marketplace inspired by platforms like Airb
 - Git
 
 ---
-
 ### 1. Clone Repository
 
 ```bash
 git clone https://github.com/Annu45/wandernest.git
-cd WanderNest
+cd wandernest
 ```
 
 ### 2. Install Dependencies
@@ -156,8 +155,6 @@ http://localhost:8080
 
 ### Home Page
 
-Add screenshot here:
-
 
 <img width="1470" height="884" alt="image" src="https://github.com/user-attachments/assets/61e65802-ef73-485c-b850-96ce08bc4ebd" />
 
@@ -179,7 +176,7 @@ Add screenshot here:
 ## 📂 Project Structure
 
 ```text
-WanderNest
+wandernest
 │
 ├── controllers
 │   ├── listing.js
@@ -324,8 +321,8 @@ ISC License
 
 ### Annu Mathur
 
-- GitHub: https://github.com/Annu45
-- LinkedIn: https://www.linkedin.com/in/annumathur003/
+- GitHub: [Annu45](https://github.com/Annu45)
+- LinkedIn: [annumathur003](https://www.linkedin.com/in/annumathur003/)
 
 ---
 
