@@ -158,24 +158,21 @@ http://localhost:8080
 
 Add screenshot here:
 
-```md
+
 <img width="1470" height="884" alt="image" src="https://github.com/user-attachments/assets/61e65802-ef73-485c-b850-96ce08bc4ebd" />
 
-```
 
 ### Listing Details
 
-```md
+
 <img width="1470" height="887" alt="image" src="https://github.com/user-attachments/assets/c4b1c2c2-5d19-4ed7-9385-1a175fefc20f" />
 
-```
 
 ### Interactive Map
 
-```md
+
 <img width="1470" height="885" alt="image" src="https://github.com/user-attachments/assets/a99196a5-e442-4fea-bdf5-dd459dab4cc0" />
 
-```
 
 ---
 
