@@ -108,7 +108,7 @@
     <% if(currUser) { %>
       <div style="background:#F8F7FF;border-radius:16px;padding:1.5rem;margin-top:1.5rem;border:1px solid #EDE9FE;">
         <div class="show-section-title mb-3"><i class="fa-solid fa-pen" style="color:#7C3AED;"></i>Leave a Review</div>
-        <form action="/listings/<%= listing._id %>/reviews" method="POST"> novalidate class="needs-validation">
+        <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
           <div class="mb-3">
             <label class="form-label">Your Rating</label>
             <fieldset class="starability-slot">

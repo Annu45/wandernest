@@ -7,6 +7,7 @@ const sampleListings = [
     price: 1500,
     location: "Malibu",
     country: "United States",
+    geometry: { type: "Point", coordinates: [-118.6845, 34.0251] }
   },
   {
     title: "Modern Loft in Downtown",
@@ -16,6 +17,7 @@ const sampleListings = [
     price: 1200,
     location: "New York City",
     country: "United States",
+    geometry: { type: "Point", coordinates: [-74.0060, 40.7128] }
   },
   {
     title: "Mountain Retreat",
@@ -25,6 +27,7 @@ const sampleListings = [
     price: 1000,
     location: "Aspen",
     country: "United States",
+    geometry: { type: "Point", coordinates: [-106.8175, 39.1911] }
   },
   {
     title: "Historic Villa in Tuscany",
@@ -34,6 +37,7 @@ const sampleListings = [
     price: 2500,
     location: "Florence",
     country: "Italy",
+    geometry: { type: "Point", coordinates: [11.2558, 43.7696] }
   },
   {
     title: "Secluded Treehouse Getaway",
@@ -43,6 +47,7 @@ const sampleListings = [
     price: 800,
     location: "Portland",
     country: "United States",
+    geometry: { type: "Point", coordinates: [-122.6750, 45.5152] }
   },
   {
     title: "Beachfront Paradise",
@@ -52,32 +57,41 @@ const sampleListings = [
     price: 2000,
     location: "Cancun",
     country: "Mexico",
+    geometry: { type: "Point", coordinates: [-87.0739, 21.1619] }
   },
   {
     title: "Rustic Cabin by the Lake",
     description:
       "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
     image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
     price: 900,
     location: "Lake Tahoe",
     country: "United States",
+    geometry: { type: "Point", coordinates: [-120.0324, 39.0968] }
   },
   {
     title: "Luxury Penthouse with City Views",
     description:
       "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
     image: "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    
     price: 3500,
     location: "Los Angeles",
     country: "United States",
+    geometry: { type: "Point", coordinates: [-118.2437, 34.0522] }
   },
   {
     title: "Ski-In/Ski-Out Chalet",
     description:
       "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
     image: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    price: 2800,
+    location: "Zermatt",
+    country: "Switzerland",
+    geometry: { type: "Point", coordinates: [7.7491, 46.0207] }
+  },
+];
+
+module.exports = { data: sampleListings };
     
     price: 3000,
     location: "Verbier",
